@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">ToDoAppWithCleanArchitecture</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_button">Add Button</string>
+    <string name="no_data_image">No Data Image</string>
+    <string name="no_data">No Data</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+
+    <string-array name="priorities">
+        <item>High Priority</item>
+        <item>Medium Priority</item>
+        <item>Low Priority</item>
+    </string-array>
+
 </resources>
