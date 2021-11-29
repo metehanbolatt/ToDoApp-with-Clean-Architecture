@@ -13,6 +13,7 @@ import com.metehanbolat.todoappwithcleanarchitecture.data.models.ToDoData
 import com.metehanbolat.todoappwithcleanarchitecture.data.viewmodel.ToDoViewModel
 import com.metehanbolat.todoappwithcleanarchitecture.fragments.SharedViewModel
 import kotlinx.android.synthetic.main.fragment_add.*
+import kotlinx.android.synthetic.main.fragment_add.view.*
 
 class AddFragment : Fragment() {
 
@@ -26,6 +27,8 @@ class AddFragment : Fragment() {
         val view =  inflater.inflate(R.layout.fragment_add, container, false)
 
         setHasOptionsMenu(true)
+
+        view.priorities_spinner.onItemSelectedListener = mSharedViewModel.listener
 
         return view
     }
