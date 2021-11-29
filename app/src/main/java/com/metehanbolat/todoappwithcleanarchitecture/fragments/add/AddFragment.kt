@@ -11,11 +11,13 @@ import com.metehanbolat.todoappwithcleanarchitecture.R
 import com.metehanbolat.todoappwithcleanarchitecture.data.models.Priority
 import com.metehanbolat.todoappwithcleanarchitecture.data.models.ToDoData
 import com.metehanbolat.todoappwithcleanarchitecture.data.viewmodel.ToDoViewModel
+import com.metehanbolat.todoappwithcleanarchitecture.fragments.SharedViewModel
 import kotlinx.android.synthetic.main.fragment_add.*
 
 class AddFragment : Fragment() {
 
     private val mToDoViewModel: ToDoViewModel by viewModels()
+    private val mSharedViewModel: SharedViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,12 +47,12 @@ class AddFragment : Fragment() {
         val mPriority = priorities_spinner.selectedItem.toString()
         val mDescription = description_et.text.toString()
 
-        val validation = verifyDataFromUser(mTitle, mDescription)
+        val validation = mSharedViewModel.verifyDataFromUser(mTitle, mDescription)
         if (validation){
             val newData = ToDoData(
                 id = 0,
                 title = mTitle,
-                priority = parsePriority(mPriority),
+                priority = mSharedViewModel.parsePriority(mPriority),
                 description = mDescription
             )
             mToDoViewModel.insertData(newData)
@@ -60,20 +62,4 @@ class AddFragment : Fragment() {
             Toast.makeText(requireContext(), "Please fill out all fields", Toast.LENGTH_SHORT).show()
         }
     }
-
-    private fun verifyDataFromUser(title: String, description: String) : Boolean {
-        return if (TextUtils.isEmpty(title) || TextUtils.isEmpty(description)){
-            false
-        }else !(title.isEmpty() || description.isEmpty())
-    }
-
-    private fun parsePriority(priority: String) : Priority {
-        return when(priority){
-            "High Priority" -> {Priority.HIGH}
-            "Medium Priority" -> {Priority.MEDIUM}
-            "Low Priority" -> {Priority.LOW}
-            else -> Priority.LOW
-        }
-    }
-
 }
