@@ -1,7 +1,8 @@
-package com.metehanbolat.todoappwithcleanarchitecture.data
+package com.metehanbolat.todoappwithcleanarchitecture.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.metehanbolat.todoappwithcleanarchitecture.data.models.Priority
 
 @Entity(tableName = "todo_table")
 data class ToDoData(
