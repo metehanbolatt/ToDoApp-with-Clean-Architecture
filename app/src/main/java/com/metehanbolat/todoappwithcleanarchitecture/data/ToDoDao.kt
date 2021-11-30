@@ -19,4 +19,7 @@ interface ToDoDao {
     @Delete
     fun deleteItem(toDoData: ToDoData)
 
+    @Query("DELETE FROM todo_table")
+    fun deleteAll()
+
 }
