@@ -1,10 +1,7 @@
 package com.metehanbolat.todoappwithcleanarchitecture.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.metehanbolat.todoappwithcleanarchitecture.data.models.ToDoData
 
 @Dao
@@ -15,5 +12,8 @@ interface ToDoDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertData(toDoData: ToDoData)
+
+    @Update
+    fun updateData(toDoData: ToDoData)
 
 }
