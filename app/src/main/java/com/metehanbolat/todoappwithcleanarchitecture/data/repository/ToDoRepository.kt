@@ -15,4 +15,8 @@ class ToDoRepository(private val toDoDao: ToDoDao) {
     fun updateData(toDoData: ToDoData){
         toDoDao.updateData(toDoData)
     }
+
+    fun deleteItem(toDoData: ToDoData){
+        toDoDao.deleteItem(toDoData)
+    }
 }
