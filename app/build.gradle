@@ -3,7 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-kapt'
-    id 'kotlin-android-extensions'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -34,6 +34,7 @@ android {
     }
     buildFeatures {
         dataBinding true
+        viewBinding true
     }
 }
 
