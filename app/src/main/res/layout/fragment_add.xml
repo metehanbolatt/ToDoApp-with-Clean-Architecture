@@ -16,7 +16,7 @@
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
         android:hint="@string/title"
-        android:background="@android:color/transparent"
+        android:background="@drawable/custom_input"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,7 +29,7 @@
         android:paddingStart="18dp"
         android:paddingEnd="18dp"
         android:entries="@array/priorities"
-        android:background="@android:color/transparent"
+        android:background="@drawable/custom_input"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title_et" />
@@ -44,7 +44,7 @@
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
         android:paddingTop="16dp"
-        android:background="@android:color/transparent"
+        android:background="@drawable/custom_input"
         android:hint="@string/description"
         app:layout_constraintTop_toBottomOf="@id/priorities_spinner"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -15,6 +15,7 @@ import com.metehanbolat.todoappwithcleanarchitecture.data.viewmodel.ToDoViewMode
 import com.metehanbolat.todoappwithcleanarchitecture.databinding.FragmentListBinding
 import com.metehanbolat.todoappwithcleanarchitecture.fragments.SharedViewModel
 import com.metehanbolat.todoappwithcleanarchitecture.fragments.list.adapter.ListAdapter
+import com.metehanbolat.todoappwithcleanarchitecture.utils.observeOnce
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 
 class ListFragment : Fragment(), SearchView.OnQueryTextListener {
@@ -32,7 +33,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentListBinding.inflate(inflater, container, false)
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.mSharedViewModel = mSharedViewModel
 
         setupRecyclerView()
@@ -59,8 +60,8 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.menu_delete_all -> confirmRemoval()
-            R.id.menu_priority_high -> mToDoViewModel.sortByHighPriority.observe(this){ adapter.setData(it) }
-            R.id.menu_priority_low -> mToDoViewModel.sortByLowPriority.observe(this){ adapter.setData(it) }
+            R.id.menu_priority_high -> mToDoViewModel.sortByHighPriority.observe(viewLifecycleOwner){ adapter.setData(it) }
+            R.id.menu_priority_low -> mToDoViewModel.sortByLowPriority.observe(viewLifecycleOwner){ adapter.setData(it) }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -111,7 +112,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun searchThroughDatabase(query: String) {
         val searchQuery = "%$query%"
-        mToDoViewModel.searchDatabase(searchQuery).observe(this){ list ->
+        mToDoViewModel.searchDatabase(searchQuery).observeOnce(viewLifecycleOwner){ list ->
             list?.let {
                 adapter.setData(it)
             }
